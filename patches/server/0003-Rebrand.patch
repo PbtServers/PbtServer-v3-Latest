@@ -44,7 +44,7 @@ index 51d89d6bcbcc24a6be6a836263ebb1ed23e91cba..b6c1e50df4e0a69ac1e81613539bcc07
  public class PaperVersionFetcher implements VersionFetcher {
      private static final java.util.regex.Pattern VER_PATTERN = java.util.regex.Pattern.compile("^([0-9\\.]*)\\-.*R"); // R is an anchor, will always give '-R' at end
 -    private static final String GITHUB_BRANCH_NAME = "master";
-+    private static final String JENKINS_URL = "https://ci.pl3x.net/job/Purpur/lastSuccessfulBuild/buildNumber"; // Purpur
++    private static final String JENKINS_URL = "https://ci.pbtservers.com:1111/job/PbtServer-v3-Purpur-Latest/lastSuccessfulBuild/buildNumber"; // PbtServer
      private static @Nullable String mcVer;
  
      @Override
@@ -54,7 +54,7 @@ index 51d89d6bcbcc24a6be6a836263ebb1ed23e91cba..b6c1e50df4e0a69ac1e81613539bcc07
      public Component getVersionMessage(@Nonnull String serverVersion) {
 -        String[] parts = serverVersion.substring("git-Airplane-".length()).split("[-\\s]"); // Tuinity
 -        final Component updateMessage = getUpdateStatusMessage("TECHNOVE/Airplane", GITHUB_BRANCH_NAME, parts[0]); // Tuinity
-+        String[] parts = serverVersion.substring("git-Purpur-".length()).split("[-\\s]"); // Airplane // Purpur
++        String[] parts = serverVersion.substring("git-PbtServer-".length()).split("[-\\s]"); // Airplane // Purpur // PbtServer
 +        final Component updateMessage = getUpdateStatusMessage("pl3xgaming/Purpur", "ver/" + getMinecraftVersion(), parts[0]); // Airplane // Purpur
          final Component history = getHistory();
  
@@ -142,7 +142,7 @@ index e0b1f0671d16ddddcb6725acd25a1d1d69e42701..8c3c68465197fafc14849dc38a572e30
      protected LineReader buildReader(LineReaderBuilder builder) {
          builder
 -                .appName("Paper")
-+                .appName("Purpur") // Purpur
++                .appName("PbtServer") // PbtServer
                  .variable(LineReader.HISTORY_FILE, java.nio.file.Paths.get(".console_history"))
                  .completer(new ConsoleCommandCompleter(this.server))
                  .option(LineReader.Option.COMPLETE_IN_WORD, true);
@@ -155,7 +155,7 @@ index f6d335b377dbf6f744e5f6ced56cf437e6e6bab3..306b4185fcc86189966f1170547ca1d6
      @DontObfuscate
      public String getServerModName() {
 -        return "Airplane"; // Airplane // Paper - Paper > // Spigot - Spigot > // CraftBukkit - cb > vanilla!
-+        return "Purpur"; // Purpur - Purpur > // Airplane // Paper - Paper > // Spigot - Spigot > // CraftBukkit - cb > vanilla!
++        return "PbtServer"; // PbtServer - PbtServer // Purpur - Purpur > // Airplane // Paper - Paper > // Spigot - Spigot > // CraftBukkit - cb > vanilla!
      }
  
      public SystemReport fillSystemReport(SystemReport details) {
@@ -187,7 +187,7 @@ index 28fa8e5c0d1e78d57d9cfb5ea2998740b8d700dc..b6805922b1a59e35ad4f3bd3cc5646a2
  
  public final class CraftServer implements Server {
 -    private final String serverName = "Airplane"; // Paper // Airplane
-+    private final String serverName = "Purpur"; // Paper // Airplane // Purpur
++    private final String serverName = "PbtServer"; // Paper // Airplane // Purpur // PbtServer
      private final String serverVersion;
      private final String bukkitVersion = Versioning.getBukkitVersion();
      private final Logger logger = Logger.getLogger("Minecraft");
