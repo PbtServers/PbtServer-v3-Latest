@@ -31,7 +31,7 @@ index c1e70d5f127804deabcf626b725390863e896d38..c6b4a4d679614b13215768e0c38b9fe0
              "Implementation-Title" to "CraftBukkit",
 -            "Implementation-Version" to "git-Paper-$implementationVersion",
 -            "Implementation-Version" to "git-Airplane-$implementationVersion", // Airplane // Tuinity
-+            "Implementation-Version" to "git-Purpur-$implementationVersion", // Airplane // Purpur
++            "Implementation-Version" to "git-PbtServer-$implementationVersion", // Airplane // Purpur // PbtServer
              "Implementation-Vendor" to date, // Paper
              "Specification-Title" to "Bukkit",
              "Specification-Version" to project.version,
