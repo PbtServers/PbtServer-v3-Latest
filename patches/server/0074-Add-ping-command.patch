@@ -34,7 +34,7 @@ index 6226e04e34f88579e4cd8b9fae5fddfcc0d01912..bd0078f2859384c4cfddf897ee86fd1c
 +        pingCommandOutput = getString("settings.messages.ping-command-output", pingCommandOutput);
      }
  
-     public static String serverModName = "Purpur";
+     public static String serverModName = "PbtServer";
 diff --git a/src/main/java/net/pl3x/purpur/command/PingCommand.java b/src/main/java/net/pl3x/purpur/command/PingCommand.java
 new file mode 100644
 index 0000000000000000000000000000000000000000..6de4f71aa5d501f3f5da93cd631da654a6e264e0
