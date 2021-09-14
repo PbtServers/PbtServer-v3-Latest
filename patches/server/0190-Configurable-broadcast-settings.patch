@@ -48,6 +48,6 @@ index 7e74166e12c114330a99365440d09ee7eb6023dc..ffa8fc634e46e5bbd2f97fb4d1167cac
 +        deathMessageOnlyBroadcastToAffectedPlayer = getBoolean("settings.broadcasts.death.only-broadcast-to-affected-player", deathMessageOnlyBroadcastToAffectedPlayer);
 +    }
 +
-     public static String serverModName = "Purpur";
+     public static String serverModName = "PbtServer";
      private static void serverModName() {
          serverModName = getString("settings.server-mod-name", serverModName);

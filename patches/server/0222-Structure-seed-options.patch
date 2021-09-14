@@ -45,6 +45,6 @@ index a4df504ae098d27b9843bfdec064694de6d433f9..c7e87fc17c97e1f8ff5c3aae707a7bb5
 +        if (!TimingsManager.hiddenConfigs.contains("settings.seed")) TimingsManager.hiddenConfigs.add("settings.seed");
 +    }
 +
-     public static String serverModName = "Purpur";
+     public static String serverModName = "PbtServer";
      private static void serverModName() {
          serverModName = getString("settings.server-mod-name", serverModName);
