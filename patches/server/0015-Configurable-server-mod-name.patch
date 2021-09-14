@@ -12,7 +12,7 @@ index aa1c40af600245e0020b85d292a673683caecba7..adb69ec9916304204930a5988569c20e
  
      @DontObfuscate
      public String getServerModName() {
--        return "Purpur"; // Purpur - Purpur > // Airplane // Paper - Paper > // Spigot - Spigot > // CraftBukkit - cb > vanilla!
+-        return "PbtServer"; // PbtServer - PbtServer // Purpur - Purpur > // Airplane // Paper - Paper > // Spigot - Spigot > // CraftBukkit - cb > vanilla!
 +        return net.pl3x.purpur.PurpurConfig.serverModName; // Purpur - Purpur > // Airplane // Paper - Paper > // Spigot - Spigot > // CraftBukkit - cb > vanilla!
      }
  
@@ -25,7 +25,7 @@ index 7f572658706fdc3009490bd54c2393f7685c7de7..bc5f937e7480d954680c7b9f1d698aff
          afkTabListSuffix = getString("settings.messages.afk-tab-list-suffix", afkTabListSuffix);
      }
  
-+    public static String serverModName = "Purpur";
++    public static String serverModName = "PbtServer";
 +    private static void serverModName() {
 +        serverModName = getString("settings.server-mod-name", serverModName);
 +    }
