@@ -54,7 +54,7 @@ index 16a7808f0ad010240db8a33eccc61b623ccd3d76..e1ad567510edd0818c0faf71bfbb33c3
 +        dontRunWithScissors = getString("settings.messages.dont-run-with-scissors", dontRunWithScissors);
      }
  
-     public static String serverModName = "Purpur";
+     public static String serverModName = "PbtServer";
 diff --git a/src/main/java/net/pl3x/purpur/PurpurWorldConfig.java b/src/main/java/net/pl3x/purpur/PurpurWorldConfig.java
 index 8f7fb9cf88562637fc27d00351f5ed34ba10dfa5..86832a2171a57cb4d28ca3fe267579bd5a036104 100644
 --- a/src/main/java/net/pl3x/purpur/PurpurWorldConfig.java
