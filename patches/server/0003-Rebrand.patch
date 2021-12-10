@@ -22,7 +22,7 @@ index fd3528be3d90733e826bcbeae967b95cedf92dfe..7168672c9d38f0f30ee8a683df7f60d6
  
      implementation("io.netty:netty-all:4.1.65.Final") // Paper
 +    implementation("cat.inspiracio:rhino-js-engine:1.7.7.1") // Purpur
-+    implementation("dev.omega24:upnp4j:1.0") // Purpur
++    implementation("dev.omega24:upnp4j:1.0") // Purpur // PbtFix!
  
      implementation("net.fabricmc:mapping-io:0.3.0") // Paper - needed to read mappings for stacktrace deobfuscation
      implementation("com.velocitypowered:velocity-native:1.1.0-SNAPSHOT") // Paper
@@ -41,7 +41,7 @@ index fd3528be3d90733e826bcbeae967b95cedf92dfe..7168672c9d38f0f30ee8a683df7f60d6
      name: String, block: JavaExec.() -> Unit
  ): TaskProvider<JavaExec> = register<JavaExec>(name) {
 -    group = "paper"
-+    group = "paperweight" // PbtServer
++    group = "paperweight" // Purpur
      standardInput = System.`in`
      workingDir = rootProject.layout.projectDirectory.dir(
          providers.gradleProperty("runWorkDir").forUseAtConfigurationTime().orElse("run")
@@ -55,7 +55,7 @@ index ece77f5ea4b14bbed7c070131b3251ea86764538..aadd6550a5892e403f7b0bbef008461c
      private static final java.util.regex.Pattern VER_PATTERN = java.util.regex.Pattern.compile("^([0-9\\.]*)\\-.*R"); // R is an anchor, will always give '-R' at end
 -    private static final String GITHUB_BRANCH_NAME = "master";
 -    private static final String DOWNLOAD_PAGE = "https://papermc.io/downloads";
-+    private static final String DOWNLOAD_PAGE = "https://ci.pbtservers.com/job/PbtServer-v3-Purpur-Latest/lastSuccessfulBuild/";
++    private static final String DOWNLOAD_PAGE = "https://ci.pbtservers.com/job/PbtServer-v3-Purpur-Latest/lastSuccessfulBuild";
 +    private static final String JENKINS_URL = "https://ci.pbtservers.com/job/PbtServer-v3-Purpur-Latest/lastSuccessfulBuild/buildNumber"; // PbtServer
      private static @Nullable String mcVer;
  
@@ -76,7 +76,7 @@ index ece77f5ea4b14bbed7c070131b3251ea86764538..aadd6550a5892e403f7b0bbef008461c
                  mcVer = result.substring(0, result.length() - 2); // strip 'R' anchor and trailing '-'
              } else {
 -                org.bukkit.Bukkit.getLogger().warning("Unable to match version to pattern! Report to PaperMC!");
-+                org.bukkit.Bukkit.getLogger().warning("Unable to match version to pattern! Report to PbtServers!"); // Purpur // PbtServer
++                org.bukkit.Bukkit.getLogger().warning("Unable to match version to pattern! Report to Purpur!"); // Purpur
                  org.bukkit.Bukkit.getLogger().warning("Pattern: " + VER_PATTERN.toString());
                  org.bukkit.Bukkit.getLogger().warning("Version: " + org.bukkit.Bukkit.getBukkitVersion());
              }
@@ -796,3 +796,4 @@ z0D-_I{|T<5kwD9uH3yf1GWXp5*8eOgJf*q0IRoK|+r{}Fug&0WpNDKMTC@(Xc)9K8
 zy`lByMn!1fnY)1KYP(0Je1)c~WilUuh<&Q8^OE?L9Q^xK*Y@M$`6D6TDCZ^@l8{|}
 zxmmNw)mng$hYBii+&ZqedxWT0<Y>dnV#LG4zC%+kzcK+-??vEHT>Q-T8zu<!_QuSc
 WX&3$!%>|s_1IbA#OV)^+1pg1OmmZn`
+
