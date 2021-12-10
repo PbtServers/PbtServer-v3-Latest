@@ -12,7 +12,7 @@ index 5f65a18ae90ed8d791941cd001918122fd0c6199..a3420596178e14d4fec55db91c5e264a
  
      @DontObfuscate
      public String getServerModName() {
--        return "PbtServer"; // PbtServer - PbtServer // Purpur - Purpur > // Airplane // Paper - Paper > // Spigot - Spigot > // CraftBukkit - cb > vanilla!
+-        return "PbtServer"; // Purpur - Purpur // PbtServer - PbtServer > // Airplane // Paper - Paper > // Spigot - Spigot > // CraftBukkit - cb > vanilla!
 +        return net.pl3x.purpur.PurpurConfig.serverModName; // Purpur - Purpur > // Airplane // Paper - Paper > // Spigot - Spigot > // CraftBukkit - cb > vanilla!
      }
  
