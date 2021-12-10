@@ -31,11 +31,8 @@ index fd3528be3d90733e826bcbeae967b95cedf92dfe..7168672c9d38f0f30ee8a683df7f60d6
              "Main-Class" to "org.bukkit.craftbukkit.Main",
              "Implementation-Title" to "CraftBukkit",
 -            "Implementation-Version" to "git-Paper-$implementationVersion",
-
--            "Implementation-Version" to "git-Airplane-$implementationVersion", // Airplane // Tuinity
-
+-            "Implementation-Version" to "git-Airplane-$implementationVersion", // Airplane
 +            "Implementation-Version" to "git-PbtServer-$implementationVersion", // Airplane // Purpur // PbtServer
-
              "Implementation-Vendor" to date, // Paper
              "Specification-Title" to "Bukkit",
              "Specification-Version" to project.version,
@@ -44,7 +41,7 @@ index fd3528be3d90733e826bcbeae967b95cedf92dfe..7168672c9d38f0f30ee8a683df7f60d6
      name: String, block: JavaExec.() -> Unit
  ): TaskProvider<JavaExec> = register<JavaExec>(name) {
 -    group = "paper"
-+    group = "paperweight" // Purpur
++    group = "paperweight" // PbtServer
      standardInput = System.`in`
      workingDir = rootProject.layout.projectDirectory.dir(
          providers.gradleProperty("runWorkDir").forUseAtConfigurationTime().orElse("run")
@@ -57,10 +54,9 @@ index ece77f5ea4b14bbed7c070131b3251ea86764538..aadd6550a5892e403f7b0bbef008461c
  public class PaperVersionFetcher implements VersionFetcher {
      private static final java.util.regex.Pattern VER_PATTERN = java.util.regex.Pattern.compile("^([0-9\\.]*)\\-.*R"); // R is an anchor, will always give '-R' at end
 -    private static final String GITHUB_BRANCH_NAME = "master";
-
 -    private static final String DOWNLOAD_PAGE = "https://papermc.io/downloads";
-+    private static final String DOWNLOAD_PAGE = "https://purpur.pl3x.net/downloads/";
-+    private static final String JENKINS_URL = "https://ci.pbtservers.com:1111/job/PbtServer-v3-Purpur-Latest/lastSuccessfulBuild/buildNumber"; // PbtServer
++    private static final String DOWNLOAD_PAGE = "https://ci.pbtservers.com/job/PbtServer-v3-Purpur-Latest/lastSuccessfulBuild/";
++    private static final String JENKINS_URL = "https://ci.pbtservers.com/job/PbtServer-v3-Purpur-Latest/lastSuccessfulBuild/buildNumber"; // PbtServer
      private static @Nullable String mcVer;
  
      @Override
@@ -68,11 +64,10 @@ index ece77f5ea4b14bbed7c070131b3251ea86764538..aadd6550a5892e403f7b0bbef008461c
      @Nonnull
      @Override
      public Component getVersionMessage(@Nonnull String serverVersion) {
-     
--        String[] parts = serverVersion.substring("git-Airplane-".length()).split("[-\\s]"); // Tuinity
--        final Component updateMessage = getUpdateStatusMessage("TECHNOVE/Airplane", GITHUB_BRANCH_NAME, parts[0]); // Tuinity
+-        String[] parts = serverVersion.substring("git-Paper-".length()).split("[-\\s]");
+-        final Component updateMessage = getUpdateStatusMessage("PaperMC/Paper", GITHUB_BRANCH_NAME, parts[0]);
 +        String[] parts = serverVersion.substring("git-PbtServer-".length()).split("[-\\s]"); // Airplane // Purpur // PbtServer
-+        final Component updateMessage = getUpdateStatusMessage("pl3xgaming/Purpur", "ver/" + getMinecraftVersion(), parts[0]); // Airplane // Purpur // PbtServer
++        final Component updateMessage = getUpdateStatusMessage("pl3xgaming/Purpur", "ver/" + getMinecraftVersion(), parts[0]); // Airplane // Purpur
          final Component history = getHistory();
  
          return history != null ? TextComponent.ofChildren(updateMessage, Component.newline(), history) : updateMessage;
@@ -81,7 +76,7 @@ index ece77f5ea4b14bbed7c070131b3251ea86764538..aadd6550a5892e403f7b0bbef008461c
                  mcVer = result.substring(0, result.length() - 2); // strip 'R' anchor and trailing '-'
              } else {
 -                org.bukkit.Bukkit.getLogger().warning("Unable to match version to pattern! Report to PaperMC!");
-+                org.bukkit.Bukkit.getLogger().warning("Unable to match version to pattern! Report to Purpur!"); // Purpur
++                org.bukkit.Bukkit.getLogger().warning("Unable to match version to pattern! Report to PbtServers!"); // Purpur // PbtServer
                  org.bukkit.Bukkit.getLogger().warning("Pattern: " + VER_PATTERN.toString());
                  org.bukkit.Bukkit.getLogger().warning("Version: " + org.bukkit.Bukkit.getBukkitVersion());
              }
@@ -99,7 +94,7 @@ index ece77f5ea4b14bbed7c070131b3251ea86764538..aadd6550a5892e403f7b0bbef008461c
 -                    .mapToInt(e -> e.getAsInt())
 -                    .max()
 -                    .getAsInt();
-+                int latest = json.getAsJsonObject("builds").getAsJsonPrimitive("latest").getAsInt(); // PbtServer
++                int latest = json.getAsJsonObject("builds").getAsJsonPrimitive("latest").getAsInt(); // Purpur
                  return latest - jenkinsBuild;
              } catch (JsonSyntaxException ex) {
                  ex.printStackTrace();
@@ -112,7 +107,7 @@ index e0b1f0671d16ddddcb6725acd25a1d1d69e42701..8c3c68465197fafc14849dc38a572e30
      protected LineReader buildReader(LineReaderBuilder builder) {
          builder
 -                .appName("Paper")
-+                .appName("PbtServer") // PbtServer
++                .appName("PbtServer") // Purpur // PbtServer
                  .variable(LineReader.HISTORY_FILE, java.nio.file.Paths.get(".console_history"))
                  .completer(new ConsoleCommandCompleter(this.server))
                  .option(LineReader.Option.COMPLETE_IN_WORD, true);
@@ -134,8 +129,8 @@ index e2901132b78126c0a4eb04363dfe6a0dccd1313f..69dae20c0ff581359042899d615ebcdd
 --- a/src/main/java/net/minecraft/server/dedicated/DedicatedServer.java
 +++ b/src/main/java/net/minecraft/server/dedicated/DedicatedServer.java
 @@ -294,11 +294,12 @@ public class DedicatedServer extends MinecraftServer implements ServerInterface
-             DedicatedServer.LOGGER.warn("**** EL SERVIDOR ESTÁ ARRANCANDO EN MODO NO SEGURO!");
-             DedicatedServer.LOGGER.warn("El Servidor Utilizará Usuarios No Premium. Utiliza Login.");
+             DedicatedServer.LOGGER.warn("**** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!");
+             DedicatedServer.LOGGER.warn("The server will make no attempt to authenticate usernames. Beware.");
              // Spigot start
 -            if (org.spigotmc.SpigotConfig.bungee) {
 -                DedicatedServer.LOGGER.warn("Whilst this makes it possible to use BungeeCord, unless access to your server is properly restricted, it also opens up the ability for hackers to connect with any username they choose.");
@@ -170,7 +165,7 @@ index d68872771c5d29afc19bf7cd74e970c714267b87..82c6414a26aba6abf10b7c60925bf1ea
      @Override
      public com.destroystokyo.paper.util.VersionFetcher getVersionFetcher() {
 -        return new gg.airplane.AirplaneVersionFetcher(); // Airplane
-+        return new com.destroystokyo.paper.PaperVersionFetcher(); // Airplane // Purpur
++        return new com.destroystokyo.paper.PaperVersionFetcher(); // Airplane // Purpur // PbtServer
      }
  
      @Override
@@ -801,4 +796,3 @@ z0D-_I{|T<5kwD9uH3yf1GWXp5*8eOgJf*q0IRoK|+r{}Fug&0WpNDKMTC@(Xc)9K8
 zy`lByMn!1fnY)1KYP(0Je1)c~WilUuh<&Q8^OE?L9Q^xK*Y@M$`6D6TDCZ^@l8{|}
 zxmmNw)mng$hYBii+&ZqedxWT0<Y>dnV#LG4zC%+kzcK+-??vEHT>Q-T8zu<!_QuSc
 WX&3$!%>|s_1IbA#OV)^+1pg1OmmZn`
-
