@@ -5,10 +5,10 @@ Subject: [PATCH] Component related conveniences
 
 
 diff --git a/src/main/java/net/minecraft/server/level/ServerPlayer.java b/src/main/java/net/minecraft/server/level/ServerPlayer.java
-index 1ee3a4fb960129ba4dae441ad3a4c0217be29972..4d54d474f7d5cc4b3e1530876aa18b916ce4f72c 100644
+index 88b141e2d5518e5cbe43a48e209d85d4a51319e8..6c241da9f2711aeade0f3863e4e2bab1f6b242af 100644
 --- a/src/main/java/net/minecraft/server/level/ServerPlayer.java
 +++ b/src/main/java/net/minecraft/server/level/ServerPlayer.java
-@@ -1679,6 +1679,26 @@ public class ServerPlayer extends Player {
+@@ -1678,6 +1678,26 @@ public class ServerPlayer extends Player {
      }
      // CraftBukkit end
  
@@ -36,10 +36,10 @@ index 1ee3a4fb960129ba4dae441ad3a4c0217be29972..4d54d474f7d5cc4b3e1530876aa18b91
      public void displayClientMessage(Component message, boolean actionBar) {
          this.sendMessage(message, actionBar ? ChatType.GAME_INFO : ChatType.CHAT, Util.NIL_UUID);
 diff --git a/src/main/java/net/minecraft/server/players/PlayerList.java b/src/main/java/net/minecraft/server/players/PlayerList.java
-index ad9fb50791779a5fe7d22268b71bd10d9c9ff3f0..1c1602f839828252748e1acacfe42c7cac194332 100644
+index eaa005c1c9b4386bcdbe1d6eb28c3eca7635066c..b0ff18e420d064db81f4e8f3a383e1d208abf783 100644
 --- a/src/main/java/net/minecraft/server/players/PlayerList.java
 +++ b/src/main/java/net/minecraft/server/players/PlayerList.java
-@@ -1395,6 +1395,62 @@ public abstract class PlayerList {
+@@ -1396,6 +1396,62 @@ public abstract class PlayerList {
      }
      // CraftBukkit end
  
@@ -103,10 +103,10 @@ index ad9fb50791779a5fe7d22268b71bd10d9c9ff3f0..1c1602f839828252748e1acacfe42c7c
          this.server.sendMessage(message, sender);
          Iterator iterator = this.players.iterator();
 diff --git a/src/main/java/net/minecraft/world/entity/Entity.java b/src/main/java/net/minecraft/world/entity/Entity.java
-index 732eb171f6a8fe1b02044a00fcf85217c41116ac..3b7d72f035d7fd74971af043294047ff1ed4c95c 100644
+index b938d8d1e13a68b3895fcec3523daecbc3c6628e..7d17bfd793a53cb44e319ef980c1d9d5b711cd36 100644
 --- a/src/main/java/net/minecraft/world/entity/Entity.java
 +++ b/src/main/java/net/minecraft/world/entity/Entity.java
-@@ -3596,6 +3596,34 @@ public abstract class Entity implements Nameable, EntityAccess, CommandSource, n
+@@ -3629,6 +3629,34 @@ public abstract class Entity implements Nameable, EntityAccess, CommandSource, n
          return SlotAccess.NULL;
      }
  
@@ -116,7 +116,7 @@ index 732eb171f6a8fe1b02044a00fcf85217c41116ac..3b7d72f035d7fd74971af043294047ff
 +    }
 +
 +    public void sendMessage(@Nullable String message, UUID sender) {
-+        if (message != null) {
++        if (org.apache.commons.lang3.StringUtils.isNotEmpty(message)) {
 +            sendMessage(net.kyori.adventure.text.minimessage.MiniMessage.get().parse(message), sender);
 +        }
 +    }

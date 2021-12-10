@@ -5,7 +5,7 @@ Subject: [PATCH] Purpur client support
 
 
 diff --git a/src/main/java/net/minecraft/server/level/ServerPlayer.java b/src/main/java/net/minecraft/server/level/ServerPlayer.java
-index 6d2d2ba4a83d887f4d52188305a4a28c2ee2f014..1ee3a4fb960129ba4dae441ad3a4c0217be29972 100644
+index 78fda0c982810b8b881a87099f355247566e513a..88b141e2d5518e5cbe43a48e209d85d4a51319e8 100644
 --- a/src/main/java/net/minecraft/server/level/ServerPlayer.java
 +++ b/src/main/java/net/minecraft/server/level/ServerPlayer.java
 @@ -258,6 +258,7 @@ public class ServerPlayer extends Player {
@@ -17,10 +17,10 @@ index 6d2d2ba4a83d887f4d52188305a4a28c2ee2f014..1ee3a4fb960129ba4dae441ad3a4c021
      public double lastEntitySpawnRadiusSquared; // Paper - optimise isOutsideRange, this field is in blocks
      public final com.destroystokyo.paper.util.misc.PooledLinkedHashSets.PooledObjectLinkedOpenHashSet<ServerPlayer> cachedSingleHashSet; // Paper
 diff --git a/src/main/java/net/minecraft/server/network/ServerGamePacketListenerImpl.java b/src/main/java/net/minecraft/server/network/ServerGamePacketListenerImpl.java
-index 86ff3ee13ac571570965966fc5b2392bb928ffb0..7a7ce8f3ad0bbcbf926718bd46e9dccee08a0778 100644
+index 621ec8e8a197323da6b423fee57c816ac9d7c875..96c15c334f299cc289e55bc4b3286c498ca3334d 100644
 --- a/src/main/java/net/minecraft/server/network/ServerGamePacketListenerImpl.java
 +++ b/src/main/java/net/minecraft/server/network/ServerGamePacketListenerImpl.java
-@@ -3114,6 +3114,7 @@ public class ServerGamePacketListenerImpl implements ServerPlayerConnection, Ser
+@@ -3120,6 +3120,7 @@ public class ServerGamePacketListenerImpl implements ServerPlayerConnection, Ser
      private static final ResourceLocation CUSTOM_UNREGISTER = new ResourceLocation("unregister");
  
      private static final ResourceLocation MINECRAFT_BRAND = new ResourceLocation("brand"); // Paper - Brand support
@@ -28,7 +28,7 @@ index 86ff3ee13ac571570965966fc5b2392bb928ffb0..7a7ce8f3ad0bbcbf926718bd46e9dcce
  
      @Override
      public void handleCustomPayload(ServerboundCustomPayloadPacket packet) {
-@@ -3138,6 +3139,13 @@ public class ServerGamePacketListenerImpl implements ServerPlayerConnection, Ser
+@@ -3144,6 +3145,13 @@ public class ServerGamePacketListenerImpl implements ServerPlayerConnection, Ser
                  ServerGamePacketListenerImpl.LOGGER.error("Couldn\'t unregister custom payload", ex);
                  this.disconnect("Invalid payload UNREGISTER!", org.bukkit.event.player.PlayerKickEvent.Cause.INVALID_PAYLOAD); // Paper - kick event cause
              }
@@ -43,10 +43,10 @@ index 86ff3ee13ac571570965966fc5b2392bb928ffb0..7a7ce8f3ad0bbcbf926718bd46e9dcce
              try {
                  byte[] data = new byte[packet.data.readableBytes()];
 diff --git a/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java b/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java
-index 1ccbdd2554073a41ca2f37deca3f1ec3e6a0665f..5055945fdf4c0ec6e5ecaf7f865e2e0738c0e021 100644
+index 4ff4143f3a7cd89ef92f4b8882fa3e5addfe0f06..614efd4204eb0cb712964c71566ad7e2c609c439 100644
 --- a/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java
 +++ b/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java
-@@ -2550,4 +2550,11 @@ public class CraftPlayer extends CraftHumanEntity implements Player {
+@@ -2577,4 +2577,11 @@ public class CraftPlayer extends CraftHumanEntity implements Player {
          return this.spigot;
      }
      // Spigot end
