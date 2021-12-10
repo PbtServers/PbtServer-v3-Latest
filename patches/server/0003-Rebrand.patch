@@ -31,13 +31,11 @@ index fd3528be3d90733e826bcbeae967b95cedf92dfe..7168672c9d38f0f30ee8a683df7f60d6
              "Main-Class" to "org.bukkit.craftbukkit.Main",
              "Implementation-Title" to "CraftBukkit",
 -            "Implementation-Version" to "git-Paper-$implementationVersion",
-<<<<<<< HEAD
+
 -            "Implementation-Version" to "git-Airplane-$implementationVersion", // Airplane // Tuinity
+
 +            "Implementation-Version" to "git-PbtServer-$implementationVersion", // Airplane // Purpur // PbtServer
-=======
--            "Implementation-Version" to "git-Airplane-$implementationVersion", // Airplane
-+            "Implementation-Version" to "git-Purpur-$implementationVersion", // Airplane // Purpur
->>>>>>> upstream/ver/1.17.1
+
              "Implementation-Vendor" to date, // Paper
              "Specification-Title" to "Bukkit",
              "Specification-Version" to project.version,
@@ -59,9 +57,7 @@ index ece77f5ea4b14bbed7c070131b3251ea86764538..aadd6550a5892e403f7b0bbef008461c
  public class PaperVersionFetcher implements VersionFetcher {
      private static final java.util.regex.Pattern VER_PATTERN = java.util.regex.Pattern.compile("^([0-9\\.]*)\\-.*R"); // R is an anchor, will always give '-R' at end
 -    private static final String GITHUB_BRANCH_NAME = "master";
-<<<<<<< HEAD
-+    private static final String JENKINS_URL = "https://ci.pbtservers.com:1111/job/PbtServer-v3-Purpur-Latest/lastSuccessfulBuild/buildNumber"; // PbtServer
-=======
+
 -    private static final String DOWNLOAD_PAGE = "https://papermc.io/downloads";
 +    private static final String DOWNLOAD_PAGE = "https://purpur.pl3x.net/downloads/";
 +    private static final String JENKINS_URL = "https://ci.pbtservers.com:1111/job/PbtServer-v3-Purpur-Latest/lastSuccessfulBuild/buildNumber"; // PbtServer
