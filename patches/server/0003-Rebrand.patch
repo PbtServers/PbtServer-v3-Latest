@@ -61,7 +61,6 @@ index ece77f5ea4b14bbed7c070131b3251ea86764538..aadd6550a5892e403f7b0bbef008461c
 -    private static final String DOWNLOAD_PAGE = "https://papermc.io/downloads";
 +    private static final String DOWNLOAD_PAGE = "https://purpur.pl3x.net/downloads/";
 +    private static final String JENKINS_URL = "https://ci.pbtservers.com:1111/job/PbtServer-v3-Purpur-Latest/lastSuccessfulBuild/buildNumber"; // PbtServer
->>>>>>> upstream/ver/1.17.1
      private static @Nullable String mcVer;
  
      @Override
@@ -69,7 +68,7 @@ index ece77f5ea4b14bbed7c070131b3251ea86764538..aadd6550a5892e403f7b0bbef008461c
      @Nonnull
      @Override
      public Component getVersionMessage(@Nonnull String serverVersion) {
-<<<<<<< HEAD
+     
 -        String[] parts = serverVersion.substring("git-Airplane-".length()).split("[-\\s]"); // Tuinity
 -        final Component updateMessage = getUpdateStatusMessage("TECHNOVE/Airplane", GITHUB_BRANCH_NAME, parts[0]); // Tuinity
 +        String[] parts = serverVersion.substring("git-PbtServer-".length()).split("[-\\s]"); // Airplane // Purpur // PbtServer
